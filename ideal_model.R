@@ -1,0 +1,5 @@
+model_full <- lm(rating ~ ., data = attitude) 
+model_null <- lm(rating ~ 1, data = attitude)
+scope = list(lower = model_null, upper = model_full)
+ideal_model <- step(object = model_null, scope = scope, direction = 'forward')
+anova_model <- anova(model_full, ideal_model)
