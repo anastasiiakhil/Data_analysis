@@ -1,0 +1,5 @@
+data <- read.csv('data.csv')
+data$admit <- factor(data$admit)
+data$rank <- factor(data$rank)
+model <- glm(admit ~ rank*gpa, data, family='binomial', na.action = na.omit)
+value <- sum(predict(object = model, newdata=data[is.na(data$admit),], type='response') > 0.4)
